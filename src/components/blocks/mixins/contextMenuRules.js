@@ -46,7 +46,8 @@ export default {
     editRule() {
       return !this.multiSelect &&
           this.firstItemType === 'file' &&
-          this.canEdit(this.selectedItems[0].extension);
+          this.canEdit(this.selectedItems[0].extension) &&
+          this.$store.state.fm.settings.readOnly !== true;
     },
 
     /**
@@ -71,7 +72,7 @@ export default {
      * @returns {boolean}
      */
     copyRule() {
-      return true;
+      return this.$store.state.fm.settings.readOnly !== true;
     },
 
     /**
@@ -79,7 +80,7 @@ export default {
      * @returns {boolean}
      */
     cutRule() {
-      return true;
+      return this.$store.state.fm.settings.readOnly !== true;
     },
 
     /**
@@ -87,7 +88,7 @@ export default {
      * @returns {boolean}
      */
     renameRule() {
-      return !this.multiSelect;
+      return this.$store.state.fm.settings.readOnly !== true;
     },
 
     /**
@@ -95,7 +96,7 @@ export default {
      * @returns {boolean}
      */
     pasteRule() {
-      return !!this.$store.state.fm.clipboard.type;
+      return !!this.$store.state.fm.clipboard.type && this.$store.state.fm.settings.readOnly !== true;
     },
 
     /**
@@ -103,7 +104,7 @@ export default {
      * @returns {boolean}
      */
     zipRule() {
-      return this.selectedDiskDriver === 'local';
+      return this.selectedDiskDriver === 'local' && this.$store.state.fm.settings.readOnly !== true;
     },
 
     /**
@@ -114,7 +115,8 @@ export default {
       return this.selectedDiskDriver === 'local' &&
           !this.multiSelect &&
           this.firstItemType === 'file' &&
-          this.isZip(this.selectedItems[0].extension);
+          this.isZip(this.selectedItems[0].extension) &&
+          this.$store.state.fm.settings.readOnly !== true;
     },
 
     /**
@@ -122,7 +124,7 @@ export default {
      * @returns {boolean}
      */
     deleteRule() {
-      return true;
+      return this.$store.state.fm.settings.readOnly !== true;
     },
 
     /**

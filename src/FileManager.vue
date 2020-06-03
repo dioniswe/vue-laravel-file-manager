@@ -1,7 +1,7 @@
 <template>
   <div class="fm d-flex flex-column"
        v-bind:class="{ 'fm-full-screen': fullScreen }">
-    <navbar></navbar>
+    <navbar v-if="canWrite !== true"></navbar>
     <div class="fm-body">
       <notification></notification>
       <context-menu></context-menu>
@@ -108,6 +108,7 @@ export default {
       windowsConfig: state => state.settings.windowsConfig,
       activeManager: state => state.settings.activeManager,
       showModal: state => state.modal.showModal,
+      canWrite: state => state.settings.readOnly,
       fullScreen: state => state.settings.fullScreen,
     }),
   },

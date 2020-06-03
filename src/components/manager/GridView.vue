@@ -28,7 +28,7 @@
                  v-bind:key="`f-${index}`"
                  v-bind:title="file.basename"
                  v-bind:class="{'active': checkSelect('files', file.path)}"
-                 v-on:click="selectItem('files', file.path, $event)"
+                 v-on:click="selectItem('files', file.path, $event, file.extension)"
                  v-on:dblclick="selectAction(file.path, file.extension)"
                  v-on:contextmenu.prevent="contextMenu(file, $event)">
                 <div class="fm-item-icon">
@@ -42,8 +42,6 @@
                 </div>
                 <div class="fm-item-info">
                     {{ `${file.filename}.${file.extension}` }}
-                    <br>
-                    {{ bytesToHuman(file.size) }}
                 </div>
             </div>
         </div>
@@ -136,7 +134,6 @@ export default {
             .fm-item-info {
                 overflow: hidden;
                 text-overflow: ellipsis;
-                white-space: nowrap;
             }
         }
     }

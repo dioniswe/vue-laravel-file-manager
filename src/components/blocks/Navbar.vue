@@ -2,7 +2,7 @@
     <div class="fm-navbar mb-3">
         <div class="row justify-content-between">
             <div class="col-auto">
-                <div class="btn-group" role="group">
+                <div  class="btn-group" role="group">
                     <button type="button" class="btn btn-secondary"
                             v-bind:disabled="backDisabled"
                             v-bind:title="lang.btn.back"
@@ -21,7 +21,7 @@
                         <i class="fas fa-sync-alt"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
+                <div  v-if="canWrite" class="btn-group" role="group">
                     <button type="button" class="btn btn-secondary"
                             v-on:click="showModal('NewFile')"
                             v-bind:title="lang.btn.file">
@@ -51,7 +51,7 @@
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
+                <div v-if="canWrite" class="btn-group" role="group">
                     <button type="button" class="btn btn-secondary"
                             v-bind:disabled="!isAnyItemSelected"
                             v-bind:title="lang.btn.copy"
@@ -71,7 +71,7 @@
                         <i class="fas fa-paste"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
+                <div v-if="canWrite" class="btn-group" role="group">
                     <button type="button" class="btn btn-secondary"
                             v-bind:title="lang.btn.hidden"
                             v-on:click="toggleHidden">
@@ -264,7 +264,15 @@ export default {
       });
     },
 
-    /**
+      /**
+       */
+      canWrite() {
+          console.log(this.$store.fm.state.settings.readOnly);
+          // show selected modal
+          return this.$store.fm.state.settings.readOnly !== true;
+      },
+
+      /**
      * Select view type
      * @param type
      */

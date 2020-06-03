@@ -37,7 +37,7 @@ export default {
       historyPointer: 0,
 
       // view type - table or grid - (default - table)
-      viewType: 'table',
+      viewType: 'grid',
     };
   },
   mutations,

@@ -27,6 +27,22 @@ export default {
     if (Object.prototype.hasOwnProperty.call(data, 'translation')) {
       Vue.set(state.translations, data.translation.name, Object.freeze(data.translation.content));
     }
+    // mobile friendly
+    if (Object.prototype.hasOwnProperty.call(data, 'mobileFriendly')) {
+      state.mobileFriendly = data.mobileFriendly;
+    }
+    // read-only client
+    if (Object.prototype.hasOwnProperty.call(data, 'readOnly')) {
+      state.readOnly = data.readOnly;
+    }
+    // single disk mode
+    if (Object.prototype.hasOwnProperty.call(data, 'singleDiskMode')) {
+        state.singleDiskMode = data.singleDiskMode;
+    }
+    // compact mode
+    if (Object.prototype.hasOwnProperty.call(data, 'compactMode')) {
+      state.compactMode = data.compactMode;
+    }
   },
 
   /**
@@ -91,6 +107,9 @@ export default {
     if (!state.lang) state.lang = data.lang;
     if (!state.windowsConfig) state.windowsConfig = data.windowsConfig;
     state.acl = data.acl;
+    if(data.hasOwnProperty('aclRules')) {
+        state.aclRules = data.aclRules;
+    }
     state.hiddenFiles = data.hiddenFiles;
   },
 

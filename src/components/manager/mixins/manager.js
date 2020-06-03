@@ -95,8 +95,17 @@ export default {
      * @param type
      * @param path
      * @param event
+     * @param extension
      */
-    selectItem(type, path, event) {
+    selectItem(type, path, event, extension=null) {
+      if(this.$store.state.fm.settings.mobileFriendly === true) {
+        var ref = this;
+        if(type=='files') {
+          ref.selectAction(path, extension)
+        }else {
+          ref.selectDirectory(path)
+        }
+      }
       // search in selected array
       const alreadySelected = this.selected[type].includes(path);
 

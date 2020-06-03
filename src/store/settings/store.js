@@ -25,6 +25,23 @@ export default {
       // ACL
       acl: null,
 
+      // acl rules
+      aclRules: null,
+
+      // bool mobileFriendly
+      mobileFriendly: false,
+
+      // bool readOnly
+      readOnly: false,
+
+      // bool singleDiskMode
+      singleDiskMode: false,
+
+      // bool compactMode
+      compactMode: false,
+
+
+
       // App version
       version: '2.4.14',
 
